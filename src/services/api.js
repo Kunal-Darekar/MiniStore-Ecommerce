@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+/
 const API_BASE_URL = 'https://fakestoreapi.com'
 
 const api = axios.create({
@@ -8,49 +9,48 @@ const api = axios.create({
 })
 
 export const productService = {
-  // Get all products
+
   getAllProducts: async () => {
     try {
       const response = await api.get('/products')
-      return response.data.products || response.data
+      return response.data // fakestoreapi.com returns an array directly
     } catch (error) {
       console.error('Error fetching products:', error)
       throw error
     }
   },
 
-  // Get product by ID
   getProductById: async (id) => {
     try {
-      const response = await api.get(`/products/${id}`);
-      return response.data.product || response.data;
+      const response = await api.get(`/products/${id}`)
+      return response.data // single product object
     } catch (error) {
-      console.error('Error fetching product:', error);
-      throw error;
+      console.error('Error fetching product:', error)
+      throw error
     }
   },
 
-  // Get products by category
+  
   getProductsByCategory: async (category) => {
     try {
       const response = await api.get(`/products/category/${category}`)
-     return response.data
+      return response.data // array of products
     } catch (error) {
       console.error('Error fetching products by category:', error)
       throw error
     }
   },
 
-  // Get all categories
+  
   getCategories: async () => {
     try {
       const response = await api.get('/products/categories')
-      return response.data
+      return response.data // array of category names
     } catch (error) {
       console.error('Error fetching categories:', error)
       throw error
     }
-  }
+  },
 }
 
-export default api 
+export default api
