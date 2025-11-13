@@ -33,8 +33,8 @@ export const productService = {
   // Get products by category
   getProductsByCategory: async (category) => {
     try {
-      const response = await api.get(`/products?category=${category}`)
-      return response.data.products || response.data
+      const response = await api.get(`/products/category/${category}`)
+     return response.data
     } catch (error) {
       console.error('Error fetching products by category:', error)
       throw error
